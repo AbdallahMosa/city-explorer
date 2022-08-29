@@ -1,5 +1,6 @@
 we are building a search engin that user can search for a location by providing a name of the city that he want, and the application will give the user the latitude and longitude also will give him an snapshot to the map.
 my server in heroku  :  https://server-404.herokuapp.com/
+my netlify : glittering-cat-124a87.netlify.app
 Getting Started
 planning what we need to do , management the time , start coding.
 
