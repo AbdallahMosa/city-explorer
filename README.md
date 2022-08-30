@@ -1,6 +1,6 @@
 we are building a search engin that user can search for a location by providing a name of the city that he want, and the application will give the user the latitude and longitude also will give him an snapshot to the map.
 my server in heroku  :  https://server-404.herokuapp.com/
-my netlify : glittering-cat-124a87.netlify.app
+
 Getting Started
 planning what we need to do , management the time , start coding.
 
@@ -20,7 +20,7 @@ Start time: 2:00 pm
 
 Finish time: 7:30 pm
 
-netlify :  glittering-cat-124a87.netlify.appnetlify.app/
+netlify : https://630df978e7486b46b17607d2--inspiring-dolphin-eb7491.netlify.app/ 
 ![lab7 cycle](lab7.png)
 
 # request-response cycle
