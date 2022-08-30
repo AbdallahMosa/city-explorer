@@ -3,11 +3,11 @@ import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import Weather from './weather';
+import Weather from './Weather';
 import Movies from './Movies';
 
 
-
+// 
 class Main extends React.Component {
     constructor(props) {
         super(props);
