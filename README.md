@@ -20,7 +20,7 @@ Start time: 2:00 pm
 
 Finish time: 7:30 pm
 
-netlify : https://630df978e7486b46b17607d2--inspiring-dolphin-eb7491.netlify.app/ 
+netlify : https://dreamy-sable-085c04.netlify.app/ 
 ![lab7 cycle](lab7.png)
 
 # request-response cycle
