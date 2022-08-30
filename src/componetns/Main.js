@@ -1,11 +1,12 @@
-
 import React from "react";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import Weather from './weather';
+import Weather from './Weather';
 import Movies from './Movies';
+
+
 class Main extends React.Component {
     constructor(props) {
         super(props);
@@ -17,17 +18,16 @@ class Main extends React.Component {
             imgFlag: false,
             errFlag: false,
             errMsg: 'Oops! Something went wrong...',
-            // nURL: '',
-            // dis: "",
-            // date: "",
-            city:''
+            city: ''
         }
     }
+
     getLocation = async (e) => {
         e.preventDefault();
         const cityName = e.target.city.value;
         const key = 'pk.ccd8526052553a493956a0f705c82593';
         const URL = `https://eu1.locationiq.com/v1/search?key=${key}&q=${cityName}&format=json`
+
         try {
             let resResult = await axios.get(URL);
             this.setState({
@@ -38,17 +38,23 @@ class Main extends React.Component {
                 img: `https://maps.locationiq.com/v3/staticmap?key=${key}&center=${resResult.data[0].lat},${resResult.data[0].lon}`,
                 errFlag: false,
                 // nURL: `${process.env.REACT_APP_URL}weather?lat=${resResult.data[0].lat}&lon=${resResult.data[0].lon}`,
-                city:cityName
+                city: cityName
+
             })
+
         } catch (error) {
             this.setState({
                 imgFlag: false,
                 errFlag: true
+
             });
+
         }
+
     }
     render() {
         return (
+
             <div style={{ margin: 'auto', width: '600px', justifyContent: "center", padding: '30px' }}>
                 <Form onSubmit={this.getLocation}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -57,8 +63,10 @@ class Main extends React.Component {
                     <Button variant="danger" type="submit">
                         Explore!
                     </Button>
-                <Weather  lat={this.state.lat} lon={this.state.lon}/>
-                <Movies  cityName={this.state.city} />
+                    <Weather lat={this.state.lat} lon={this.state.lon} />
+                    <Movies cityName={this.state.city} />
+
+
                 </Form>
                 {this.state.imgFlag &&
                     <div style={{ padding: '30px', justifyContent: "center" }}>
@@ -73,6 +81,7 @@ class Main extends React.Component {
                                 </Card.Text>
                             </Card.Body>
                         </Card>
+
                     </div>
                 }
                 {this.state.errFlag &&
@@ -85,8 +94,10 @@ class Main extends React.Component {
                                 </Card.Text>
                             </Card.Body>
                         </Card>
+
                     </div>
                 }
+
             </div>
         );
     }

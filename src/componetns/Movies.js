@@ -1,111 +1,64 @@
+import Card from 'react-bootstrap/Card';
 import React from "react";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
-import Weather from './weather';
-import Movies from './Movies';
 
 
-
-class Main extends React.Component {
+class Movies extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            lat: '',
-            lon: '',
-            img: '',
-            imgFlag: false,
-            errFlag: false,
-            errMsg: 'Oops! Something went wrong...',
-            // nURL: '',
-            // dis: "",
-            // date: "",
-            city:''
+            getMovieArray:[]
         }
     }
 
 
-    getLocation = async (e) => {
-        e.preventDefault();
-        const cityName = e.target.city.value;
-        const key = 'pk.ccd8526052553a493956a0f705c82593';
-        const URL = `https://eu1.locationiq.com/v1/search?key=${key}&q=${cityName}&format=json`
-
+    getMovie = async (event) => {
+        event.preventDefault();
+        var mURL=`${process.env.REACT_APP_URL}movies?searchQuery=${this.props.cityName}`
         try {
-            let resResult = await axios.get(URL);
+            let newMovie = await axios.get(mURL);
             this.setState({
-                name: resResult.data[0].display_name,
-                lat: resResult.data[0].lat,
-                lon: resResult.data[0].lon,
-                imgFlag: true,
-                img: `https://maps.locationiq.com/v3/staticmap?key=${key}&center=${resResult.data[0].lat},${resResult.data[0].lon}`,
-                errFlag: false,
-                // nURL: `${process.env.REACT_APP_URL}weather?lat=${resResult.data[0].lat}&lon=${resResult.data[0].lon}`,
-                city:cityName
-
-            })
-
-        } catch (error) {
-            this.setState({
-                imgFlag: false,
-                errFlag: true
+                getMovieArray: newMovie.data
 
             });
-
+        } catch {
+            this.setState({
+                erorrFlag: true,
+            });
         }
+    };
 
-    }
+
     render() {
         return (
+            <div style={{ padding: '30px', justifyContent: "center" }}>
+    <Button variant="danger" type="submit" onClick={this.getMovie}>
+        movie
+    </Button>
+    <Card>
+        <Card.Body>
+            <Card.Text>
+            {this.state.getMovieArray.map(item =>{
+        return(
+          <div>
+            <img src={item.image_url} alt=''/>
+            <p>title = {item.title} </p>
+            <p>average votes = {item.average_votes}</p>
+            <p>average votes = {item.average_votes}</p>
+            <p>total votes = {item.totalVotes}</p>
+            <p>popularity = {item.popularity}</p>
 
-
-            <div style={{ margin: 'auto', width: '600px', justifyContent: "center", padding: '30px' }}>
-                <Form onSubmit={this.getLocation}>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control type="text" name="city" placeholder="Enter city" />
-                    </Form.Group>
-                    <Button variant="danger" type="submit">
-                        Explore!
-                    </Button>
-                <Weather  lat={this.state.lat} lon={this.state.lon}/>
-                <Movies  cityName={this.state.city} />
-
-
-                </Form>
-                {this.state.imgFlag &&
-                    <div style={{ padding: '30px', justifyContent: "center" }}>
-                        <Card>
-                            {this.state.imgFlag && <Card.Img variant="top" src={this.state.img} />}
-                            <Card.Body>
-                                <Card.Text>
-                                    <h4>Display Name : {this.state.name}
-                                    </h4>
-                                    <h6>latitude :{this.state.lat}</h6>
-                                    <h6>longitude:{this.state.lon}</h6>
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-
-                    </div>
-                }
-                {this.state.errFlag &&
-                    <div style={{ padding: '30px', justifyContent: "center" }}>
-                        <Card>
-                            {this.state.imgFlag && <Card.Img variant="top" src={this.state.img} />}
-                            <Card.Body>
-                                <Card.Text>
-                                    <h3>{this.state.errMsg}</h3>
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-
-                    </div>
-                }
-
-            </div>
+          </div>
+        )
+      })
+      }
+            </Card.Text>
+        </Card.Body>
+    </Card>
+</div >
+               
         );
     }
 }
-export default Main;
+export default Movies;

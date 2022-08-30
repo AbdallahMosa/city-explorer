@@ -2,6 +2,8 @@ import React from "react";
 import Footer from "./componetns/Footer";
 import Main from "./componetns/Main";
 import Hader from "./componetns/Hader";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App extends React.Component {
   render() {

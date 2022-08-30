@@ -2,6 +2,8 @@ import Card from 'react-bootstrap/Card';
 import React from "react";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
+
+
 class Weather extends React.Component {
     constructor(props) {
         super(props);
@@ -9,6 +11,9 @@ class Weather extends React.Component {
             getWeatherArray:[]
         }
     }
+
+
+
     getWeather = async (event) => {
         event.preventDefault();
         var wURL=`${process.env.REACT_APP_URL}weather?lat=${this.props.lat}&lon=${this.props.lon}`
@@ -16,6 +21,7 @@ class Weather extends React.Component {
             let newWeather = await axios.get(wURL);
             this.setState({
                 getWeatherArray: newWeather.data
+
             });
         } catch {
             this.setState({
@@ -23,6 +29,8 @@ class Weather extends React.Component {
             });
         }
     };
+
+
     render() {
         return (
             <div style={{ padding: '30px', justifyContent: "center" }}>
@@ -45,6 +53,7 @@ class Weather extends React.Component {
         </Card.Body>
     </Card>
 </div >
+               
         );
     }
 }
