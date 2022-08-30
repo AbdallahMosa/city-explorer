@@ -16,7 +16,6 @@ class Weather extends React.Component {
 
     getWeather = async (event) => {
         event.preventDefault();
-        
         var wURL=`${process.env.REACT_APP_URL}weather?lat=${this.props.lat}&lon=${this.props.lon}`
         try {
             let newWeather = await axios.get(wURL);
@@ -59,4 +58,3 @@ class Weather extends React.Component {
     }
 }
 export default Weather;
-
