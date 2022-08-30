@@ -7,7 +7,7 @@ import Weather from './Weather';
 import Movies from './Movies';
 
 
-// 
+// hi 
 class Main extends React.Component {
     constructor(props) {
         super(props);
