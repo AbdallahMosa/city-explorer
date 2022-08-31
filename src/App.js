@@ -2,16 +2,14 @@ import React from "react";
 import Footer from "./componetns/Footer";
 import Main from "./componetns/Main";
 import Hader from "./componetns/Hader";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
   render() {
     return (
-      <div style={{ textAlign:'center' , width:"100%", height:"100%" , backgroundColor:"#21f38e4f"}}>
-       
+      <div style={{ textAlign: "center", backgroundColor: "#EAF6F6" }}>
         <Hader></Hader>
-        <Main ></Main>
+        <Main></Main>
         <Footer></Footer>
       </div>
     );
